@@ -1,0 +1,14 @@
+#include<bits/stdc++.h> 
+using namespace std; 
+long long inv(long long a, long long b){   #Given a number n. Print the multiplicative inverse of “n modulo 1000000007” 
+ return 1<a ? b - inv(b%a,a)*b/a : 1;
+}
+
+int main() 
+{ 
+    long long int a;
+    cin>>a;
+    long long int m=1000000007;
+    cout<<inv(a,m)<<endl;
+
+} 
