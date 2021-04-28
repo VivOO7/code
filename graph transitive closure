@@ -1,0 +1,76 @@
+Transitive Closure of a Graph using DFS
+
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define ll long long int
+#define pb push_back
+#define test1 cin>>x; while(x--)
+#define inputarr cin>>n; int arr[n]; for(int i=0;i<n;i++)
+#define all(x) x.begin(),x.end()
+#define FOREACH(it, l) for (auto it = l.begin(); it != l.end(); it++)
+#define rep(i,a,b) for(int i = a; i < b; i++)
+#define IN(A, B, C) assert( B <= A && A <= C)
+#define MP make_pair
+#define PB push_back
+#define INF (int)1e9
+#define EPS 1e-9
+#define PI 3.1415926535897932384626433832795
+#define MOD 1000000007
+#define N   1000000
+#define read(type) readInt<type>()
+const double pi=acos(-1.0);
+typedef pair<int, int> PII;
+typedef vector<int> VI;
+typedef vector<string> VS;
+typedef vector<PII> VII;
+typedef vector<VI> VVI;
+typedef map<int,int> MPII;
+typedef set<int> SETI;
+typedef multiset<int> MSETI;
+typedef long int int32;
+typedef unsigned long int uint32;
+typedef long long int int64;
+typedef unsigned long long int  uint64;   
+#define BLOCK 555
+#define MAX 3000
+
+vector<int>graph[100001];
+int dp[1001][1001];
+int v;
+void dfsutil(int s,int v){
+         
+         dp[s][v]=true;
+         
+         vector<int>::iterator it;
+         
+         for(it=graph[v].begin();it!=graph[v].end();it++){
+             if(dp[s][*it]==false)
+             dfsutil(s,*it);
+         }
+}
+
+void transitive(){
+
+    for(int i=0;i<v;i++)
+    dfsutil(i,i);
+
+    for(int i=0;i<v;i++){
+    for(int j=0;j<v;j++){
+    cout<<dp[i][j]<<" ";
+    }
+    cout<<endl;
+    }
+} 
+
+int main(){
+    int m;
+    cin>>v>>m;
+    memset(dp,false,sizeof(dp));
+    for(int i=0;i<m;i++){
+        int u,v;
+        cin>>u>>v;
+        graph[u].push_back(v);
+    }
+    transitive();
+}
